@@ -1,0 +1,193 @@
+plugins {
+    id 'com.android.application'
+    /*id 'com.google.gms.google-services'*/
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlinx-serialization'
+    id 'com.google.dagger.hilt.android'
+    id 'kotlin-kapt'
+}
+
+android {
+    namespace 'com.nsi_projekat'
+    compileSdk ConfigData.compileSdkVersion
+    buildToolsVersion ConfigData.buildToolVersion
+    testOptions.unitTests.includeAndroidResources = true
+
+    defaultConfig {
+        applicationId "com.nsi_projekat"
+        minSdk ConfigData.minSdkVersion
+        targetSdk ConfigData.targetSdkVersion
+        versionCode ConfigData.versionCode
+        versionName ConfigData.versionName
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+
+        def APP_NAME_RELEASE = 'NSI_Projekat'
+        def APP_NAME_DEV = 'NSI_Projekat'
+
+        debug {
+            applicationIdSuffix ".dev"
+            versionNameSuffix "-dev"
+            resValue "string", "app_name", APP_NAME_DEV
+            buildConfigField "String", "BASE_URL", "\"${Links.retrofitBaseUrlDev}\""
+            debuggable true
+        }
+
+        release {
+            versionNameSuffix "-release"
+            resValue "string", "app_name", APP_NAME_RELEASE
+            buildConfigField "String", "BASE_URL", "\"${Links.retrofitBaseUrlRelease}\""
+
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kapt {
+        correctErrorTypes true
+    }
+
+    kotlinOptions {
+        jvmTarget = '11'
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion Versions.compose_version
+    }
+
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+
+    configurations {
+        compile.exclude group: 'androidx.annotattion', module: 'annotation'
+    }
+
+    hilt {
+        enableAggregatingTask true
+    }
+}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //PROJECT FOUNDATION
+    implementation Deps.ktx_core
+    implementation Deps.android_material
+    implementation Deps.compose_ui
+    implementation Deps.compose_material
+    implementation Deps.compose_ui_preview
+    implementation Deps.lifecycle_runtime
+    implementation Deps.compose_activity
+    implementation Deps.kotlin_work
+
+    //COMPOSE DEPENDENCIES
+    implementation Deps.compose_viewmodel_lifecycle
+    implementation Deps.compose_navigation
+    implementation Deps.compose_icons_extended
+    implementation Deps.compose_hilt_navigation
+    implementation Deps.compose_animated_navigation
+    implementation Deps.compose_system_ui_controller
+    implementation Deps.compose_constraint_layout
+    implementation Deps.compose_swipe_up_refresh
+
+
+    //COROUTINES
+    implementation Deps.coroutines_core
+    implementation Deps.coroutines_android
+
+    //LIVEDATA
+    implementation Deps.livedata_lifecycle
+    implementation Deps.livedata_compose_runtime
+
+
+    //FIREBASE
+    /*implementation platform(Deps.firebase_platform)
+    implementation Deps.firebase_authentication
+    implementation Deps.firebase_firestore
+    implementation Deps.firebase_storage*/
+
+
+    //DAGGER HILT
+    implementation Deps.dagger_hilt
+    kapt Deps.dagger_hilt_compiler
+    implementation Deps.hilt_navigation
+    implementation Deps.hilt_work
+    kapt Deps.hilt_compiler
+
+    //NETWORK and SERIALIZATION
+    implementation Deps.retrofit
+    implementation Deps.kotlin_serialization
+    implementation Deps.gson_converter
+    implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
+    implementation Deps.gson
+    implementation Deps.okhttp3_okhttp
+    implementation Deps.okhttp3_logging_interceptor
+
+    //DATASTORE
+    implementation Deps.datastore_protobuf
+    implementation Deps.datastore_preferences
+
+    //ROOM
+    implementation Deps.room_runtime
+    implementation Deps.room_ktx
+    kapt Deps.room_compiler
+
+    //GLIDE
+    implementation Deps.glide_landscapist
+
+    //TIMBER
+    implementation Deps.timber
+
+    //LOTTIE ANIMATION
+    implementation Deps.lottie_animation
+
+    //OpenCSV
+    implementation Deps.open_csv
+
+    //LOCAL UNIT TESTS
+    testImplementation Deps.test_core
+    testImplementation Deps.test_junit
+    testImplementation Deps.test_arch_core
+    testImplementation Deps.test_coroutines
+    testImplementation Deps.test_google_truth
+    testImplementation Deps.test_mock_webserver
+    testImplementation Deps.test_mockk
+    testImplementation Deps.test_flow_turbine
+    debugImplementation Deps.test_compose_ui_manifest
+
+    //INSTRUMENTATION TESTS
+    androidTestImplementation Deps.test_dagger_hilt
+    kaptAndroidTest Deps.dagger_hilt_compiler
+    androidTestImplementation Deps.test_junit
+    androidTestImplementation Deps.test_arch_core
+    androidTestImplementation Deps.test_coroutines
+    androidTestImplementation Deps.test_google_truth
+    androidTestImplementation Deps.test_mock_webserver
+    androidTestImplementation Deps.test_mockk
+    androidTestImplementation Deps.test_ext_junit
+    androidTestImplementation Deps.test_ktx_core
+    androidTestImplementation Deps.test_runner
+    androidTestImplementation Deps.test_espresso_core
+    androidTestImplementation Deps.test_compose_ui_junit
+    debugImplementation Deps.test_compose_ui_tooling
+}
