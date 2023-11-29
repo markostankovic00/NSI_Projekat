@@ -21,6 +21,7 @@ object Versions {
     const val retrofit_version = "2.9.0"
     const val kotlin_serialization_version = "1.4.0"
     const val gson_converter_version = "2.9.0"
+    const val moshi_converter_version = "2.9.0"
     const val gson_version = "2.9.0"
     const val okhttp3_version = "5.0.0-alpha.5"
     const val datastore_version = "1.0.0"

@@ -1,6 +1,6 @@
 plugins {
     id 'com.android.application'
-    /*id 'com.google.gms.google-services'*/
+    id 'com.google.gms.google-services'
     id 'org.jetbrains.kotlin.android'
     id 'kotlinx-serialization'
     id 'com.google.dagger.hilt.android'
@@ -121,10 +121,11 @@ dependencies {
 
 
     //FIREBASE
-    /*implementation platform(Deps.firebase_platform)
+    implementation platform(Deps.firebase_platform)
+    implementation Deps.firebase_analytics
     implementation Deps.firebase_authentication
     implementation Deps.firebase_firestore
-    implementation Deps.firebase_storage*/
+    implementation Deps.firebase_storage
 
 
     //DAGGER HILT
@@ -138,7 +139,7 @@ dependencies {
     implementation Deps.retrofit
     implementation Deps.kotlin_serialization
     implementation Deps.gson_converter
-    implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
+    implementation Deps.moshi_converter
     implementation Deps.gson
     implementation Deps.okhttp3_okhttp
     implementation Deps.okhttp3_logging_interceptor

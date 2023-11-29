@@ -22,6 +22,7 @@ import Versions.kotlin_work_version
 import Versions.ktx_core_version
 import Versions.lifecycle_version
 import Versions.lottie_version
+import Versions.moshi_converter_version
 import Versions.okhttp3_version
 import Versions.open_csv_version
 import Versions.retrofit_version
@@ -72,6 +73,7 @@ object Deps {
 
     //FIREBASE
     const val firebase_platform = "com.google.firebase:firebase-bom:$firebase_version"
+    const val firebase_analytics = "com.google.firebase:firebase-analytics"
     const val firebase_authentication = "com.google.firebase:firebase-auth-ktx"
     const val firebase_firestore = "com.google.firebase:firebase-firestore-ktx"
     const val firebase_storage = "com.google.firebase:firebase-storage-ktx"
@@ -87,6 +89,7 @@ object Deps {
     const val retrofit = "com.squareup.retrofit2:retrofit:$retrofit_version"
     const val kotlin_serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlin_serialization_version"
     const val gson_converter = "com.squareup.retrofit2:converter-gson:$gson_converter_version"
+    const val moshi_converter = "com.squareup.retrofit2:converter-moshi:$moshi_converter_version"
     const val gson = "com.google.code.gson:gson:$gson_version"
     const val okhttp3_okhttp = "com.squareup.okhttp3:okhttp:$okhttp3_version"
     const val okhttp3_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:$okhttp3_version"
