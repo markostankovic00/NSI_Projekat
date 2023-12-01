@@ -9,6 +9,9 @@ import androidx.compose.runtime.Composable
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import com.nsi_projekat.ui.screens.account.login.LogInScreen
+import com.nsi_projekat.ui.screens.account.onboarding.OnBoardingScreen
+import com.nsi_projekat.ui.screens.account.signup.SignUpScreen
 import com.nsi_projekat.ui.screens.account.splash.SplashScreen
 
 @ExperimentalAnimationApi
@@ -43,6 +46,24 @@ fun AccountActivityNavigation() {
             route = Routes.SPLASH_SCREEN
         ) {
             SplashScreen(navController)
+        }
+
+        composable(
+            route = Routes.ON_BOARDING_SCREEN
+        ) {
+            OnBoardingScreen(navController)
+        }
+
+        composable(
+            route = Routes.LOG_IN_SCREEN
+        ) {
+            LogInScreen(navController)
+        }
+
+        composable(
+            route = Routes.SIGN_UP_SCREEN
+        ) {
+            SignUpScreen(navController)
         }
     }
 }
