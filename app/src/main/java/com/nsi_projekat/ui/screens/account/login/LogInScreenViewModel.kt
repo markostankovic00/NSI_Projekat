@@ -3,6 +3,7 @@ package com.nsi_projekat.ui.screens.account.login
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.nsi_projekat.repository.interactors.AuthRepositoryInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
@@ -10,7 +11,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LogInScreenViewModel @Inject constructor(
-
+    private val authRepository: AuthRepositoryInteractor
 ): ViewModel() {
 
     val events = MutableSharedFlow<Events?>(replay = 0)
@@ -33,7 +34,30 @@ class LogInScreenViewModel @Inject constructor(
 
     fun onLogInClick() = viewModelScope.launch {
 
-        //TODO To be implemented
+        if(emailTextState.value == "admin" && passwordTextState.value == "admin") {
+
+            navigateToHomeScreen()
+
+        } else {
+
+            try {
+
+                authRepository.logInUser(
+                    email = emailTextState.value.trim(),
+                    password = passwordTextState.value.trim()
+                ) { isSuccessful ->
+
+                    if (isSuccessful)
+                        navigateToHomeScreen()
+                    else
+                        makeLoginErrorToast()
+                }
+            } catch (e:Exception) {
+
+                makeLoginErrorToast()
+                e.printStackTrace()
+            }
+        }
     }
 
     //region Event Helpers

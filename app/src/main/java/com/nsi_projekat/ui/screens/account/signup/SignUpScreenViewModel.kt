@@ -3,6 +3,8 @@ package com.nsi_projekat.ui.screens.account.signup
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.nsi_projekat.repository.interactors.AuthRepositoryInteractor
+import com.nsi_projekat.repository.interactors.UsersDataRepositoryInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
@@ -10,7 +12,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignUpScreenViewModel @Inject constructor(
-
+    private val authRepository: AuthRepositoryInteractor,
+    private val usersDataRepository: UsersDataRepositoryInteractor
 ): ViewModel() {
 
     val events = MutableSharedFlow<Events?>(replay = 0)
@@ -51,7 +54,43 @@ class SignUpScreenViewModel @Inject constructor(
 
     fun onSignUpClick() = viewModelScope.launch {
 
-        //TODO to be implemented
+        try {
+
+            authRepository.signUpUser(
+                email = emailTextState.value.trim(),
+                password = passwordTextState.value.trim()
+            ) { isSuccessful ->
+
+                if (isSuccessful) {
+
+                    usersDataRepository.addUserData(
+                        userId = authRepository.getUserId(),
+                        name = nameTextState.value.trim(),
+                        surname = surnameTextState.value.trim(),
+                        email = emailTextState.value.trim(),
+                        cash = 1000.00
+                    ) { isSuccessfulUserData ->
+
+                        if (isSuccessfulUserData) {
+
+                            navigateToHomeScreen()
+
+                        } else {
+
+                            makeSignUpErrorToast()
+                        }
+                    }
+
+                } else {
+
+                    makeSignUpErrorToast()
+                }
+            }
+        } catch (e:Exception) {
+
+            makeSignUpErrorToast()
+            e.printStackTrace()
+        }
     }
 
     //region Event Helpers
