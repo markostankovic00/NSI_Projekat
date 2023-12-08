@@ -23,6 +23,10 @@
     <string name="sign_up_screen_already_have_an_account">Already have an account?</string>
     <string name="sign_up_screen_already_have_an_account_press_here">Log In</string>
 
+    //INVESTMENTS SCREEN
+    <string name="investments_screen_title">My Investments</string>
+    <string name="investments_screen_make_investment">Go and make your first investment!</string>
+
     //PROFILE SCREEN
     <string name="profile_screen_title">Profile</string>
     <string name="profile_screen_log_out_button">Log Out</string>

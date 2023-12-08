@@ -1,8 +1,10 @@
 package com.nsi_projekat.repository.di
 
 import com.nsi_projekat.repository.implementations.AuthRepository
+import com.nsi_projekat.repository.implementations.InvestmentsRepository
 import com.nsi_projekat.repository.implementations.UsersDataRepository
 import com.nsi_projekat.repository.interactors.AuthRepositoryInteractor
+import com.nsi_projekat.repository.interactors.InvestmentsInteractor
 import com.nsi_projekat.repository.interactors.UsersDataRepositoryInteractor
 import dagger.Module
 import dagger.Provides
@@ -24,5 +26,11 @@ open class RepoModule {
     @Singleton
     fun provideUserDataRepository(): UsersDataRepositoryInteractor {
         return UsersDataRepository()
+    }
+
+    @Provides
+    @Singleton
+    fun provideInvestmentsRepository(): InvestmentsInteractor {
+        return InvestmentsRepository()
     }
 }

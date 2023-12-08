@@ -8,11 +8,9 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import com.nsi_projekat.models.UserData
+import com.nsi_projekat.repository.constants.USERS_DATA_COLLECTION_REF
+import com.nsi_projekat.repository.constants.USER_IMAGES_STORAGE_REF
 import com.nsi_projekat.repository.interactors.UsersDataRepositoryInteractor
-
-const val USERS_DATA_COLLECTION_REF = "users_data"
-
-const val USER_IMAGES_STORAGE_REF = "users_images"
 
 class UsersDataRepository: UsersDataRepositoryInteractor {
 
