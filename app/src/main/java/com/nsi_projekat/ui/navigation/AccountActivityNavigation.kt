@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalAnimationApi::class)
+
 package com.nsi_projekat.ui.navigation
 
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -14,7 +16,6 @@ import com.nsi_projekat.ui.screens.account.onboarding.OnBoardingScreen
 import com.nsi_projekat.ui.screens.account.signup.SignUpScreen
 import com.nsi_projekat.ui.screens.account.splash.SplashScreen
 
-@ExperimentalAnimationApi
 @Composable
 fun AccountActivityNavigation() {
 

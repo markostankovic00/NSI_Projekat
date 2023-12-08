@@ -3,7 +3,6 @@ package com.nsi_projekat.ui.activities
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Surface
@@ -12,7 +11,6 @@ import com.nsi_projekat.ui.navigation.AccountActivityNavigation
 import com.nsi_projekat.ui.theme.NSI_ProjekatTheme
 import dagger.hilt.android.AndroidEntryPoint
 
-@ExperimentalAnimationApi
 @AndroidEntryPoint
 class AccountActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

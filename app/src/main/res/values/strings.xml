@@ -23,12 +23,24 @@
     <string name="sign_up_screen_already_have_an_account">Already have an account?</string>
     <string name="sign_up_screen_already_have_an_account_press_here">Log In</string>
 
+    //PROFILE SCREEN
+    <string name="profile_screen_title">Profile</string>
+    <string name="profile_screen_log_out_button">Log Out</string>
+    <string name="profile_screen_name_label">Name:</string>
+    <string name="profile_screen_surname_label">Surname:</string>
+    <string name="profile_screen_email_label">Email:</string>
+    <string name="profile_screen_cash_label">Cash:</string>
+
     //BOTTOM NAV BAR
     <string name="bottom_nav_bar_home">Home</string>
     <string name="bottom_nav_bar_profile">Profile</string>
     <string name="bottom_nav_bar_investments">Investments</string>
 
-    //ERRORS
+    //CASH CONTEXT MENU
+    <string name="cash_context_menu_deposit">Deposit</string>
+    <string name="cash_context_menu_withdraw">Withdraw</string>
+
+    //ERRORS AND TOASTS
     <string name="error_cant_be_empty">Can\'t be empty</string>
     <string name="error_password_must_have_6_chars">Password must be at least 6 characters</string>
     <string name="error_invalid_email">A valid email is required</string>
@@ -37,5 +49,6 @@
     <string name="error_invalid_signup">Something went wrong!</string>
     <string name="error_invalid_logout">Error logging out! Please try again later</string>
     <string name="error_generic">Something went wrong! Please try again later</string>
+    <string name="successful_changed_profile_picture_toast">Successfully changed profile picture!</string>
 
 </resources>
