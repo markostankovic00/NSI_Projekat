@@ -243,7 +243,8 @@ private fun EventsHandler(
         when (event.value) {
 
             is Events.NavigateToCompanyInfoScreen -> {
-                navController.navigate(Routes.COMPANY_INFO_SCREEN)
+                val companySymbol = (event.value as Events.NavigateToCompanyInfoScreen).companySymbol
+                navController.navigate(Routes.COMPANY_INFO_SCREEN + "/" + companySymbol)
             }
 
             Events.MakeLoadingErrorToast -> {

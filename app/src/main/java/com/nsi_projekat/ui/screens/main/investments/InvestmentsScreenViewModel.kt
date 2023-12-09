@@ -4,7 +4,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nsi_projekat.models.Investment
-import com.nsi_projekat.repository.interactors.AuthRepositoryInteractor
+import com.nsi_projekat.repository.interactors.AuthInteractor
 import com.nsi_projekat.repository.interactors.InvestmentsInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class InvestmentsScreenViewModel @Inject constructor(
-    private val authRepository: AuthRepositoryInteractor,
+    private val authRepository: AuthInteractor,
     private val investmentsRepository: InvestmentsInteractor
 ): ViewModel() {
 

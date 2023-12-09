@@ -3,7 +3,7 @@ package com.nsi_projekat.repository.interactors
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseUser
 
-interface AuthRepositoryInteractor {
+interface AuthInteractor {
 
     val currentUser: FirebaseUser?
 

@@ -3,7 +3,7 @@ package com.nsi_projekat.repository.interactors
 import android.net.Uri
 import com.nsi_projekat.models.UserData
 
-interface UsersDataRepositoryInteractor {
+interface UsersDataInteractor {
 
     fun getUserData(
         userId: String,

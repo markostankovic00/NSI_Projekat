@@ -219,10 +219,10 @@ private fun ProfileScreenView(
             AlertDialog(
                 onDismissRequest = { viewModel.onWithdrawDialogDismissed() },
                 title = {
-                    Text("Withdraw Cash")
+                    Text(stringResource(id = R.string.alert_dialog_withdraw_cash_dialog_title))
                 },
                 text = {
-                    Text("Please enter the amount of cash")
+                    Text(stringResource(id = R.string.alert_dialog_cash_amount_dialog_text))
                 },
                 buttons = {
                     Column(
@@ -233,7 +233,7 @@ private fun ProfileScreenView(
                             modifier = Modifier.padding(horizontal = MaterialTheme.spacing.medium),
                             textStateValue = amountOfCash,
                             onValueChange = { amountOfCash = it },
-                            label = "USD",
+                            label = stringResource(id = R.string.alert_dialog_currency_label),
                             keyboardType = KeyboardType.Number
                         )
 
@@ -249,13 +249,13 @@ private fun ProfileScreenView(
                                         amountOfCash = ""
                                     }
                                     .padding(vertical = MaterialTheme.spacing.medium),
-                                text = "Cancel",
+                                text = stringResource(id = R.string.alert_dialog_cancel),
                                 fontWeight = FontWeight.Bold,
                                 textAlign = TextAlign.Center,
                             )
 
                             Text(
-                                text = "Confirm",
+                                text = stringResource(id = R.string.alert_dialog_confirm),
                                 fontWeight = FontWeight.Bold,
                                 textAlign = TextAlign.Center,
                                 color = MaterialTheme.colors.primary,
@@ -283,10 +283,10 @@ private fun ProfileScreenView(
                     amountOfCash = ""
                 },
                 title = {
-                    Text("Deposit Cash")
+                    Text(stringResource(id = R.string.alert_dialog_deposit_cash_dialog_title))
                 },
                 text = {
-                    Text("Please enter the amount of cash")
+                    Text(stringResource(id = R.string.alert_dialog_cash_amount_dialog_text))
                 },
                 buttons = {
 
@@ -298,7 +298,7 @@ private fun ProfileScreenView(
                             modifier = Modifier.padding(horizontal = MaterialTheme.spacing.medium),
                             textStateValue = amountOfCash,
                             onValueChange = { amountOfCash = it },
-                            label = "USD",
+                            label = stringResource(id = R.string.alert_dialog_currency_label),
                             keyboardType = KeyboardType.Number
                         )
 
@@ -314,13 +314,13 @@ private fun ProfileScreenView(
                                         amountOfCash = ""
                                     }
                                     .padding(vertical = MaterialTheme.spacing.medium),
-                                text = "Cancel",
+                                text = stringResource(id = R.string.alert_dialog_cancel),
                                 fontWeight = FontWeight.Bold,
                                 textAlign = TextAlign.Center,
                             )
 
                             Text(
-                                text = "Confirm",
+                                text = stringResource(id = R.string.alert_dialog_confirm),
                                 fontWeight = FontWeight.Bold,
                                 textAlign = TextAlign.Center,
                                 color = MaterialTheme.colors.primary,

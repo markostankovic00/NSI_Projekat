@@ -8,10 +8,10 @@ import com.nsi_projekat.repository.implementations.AuthRepository
 import com.nsi_projekat.repository.implementations.InvestmentsRepository
 import com.nsi_projekat.repository.implementations.StockRepository
 import com.nsi_projekat.repository.implementations.UsersDataRepository
-import com.nsi_projekat.repository.interactors.AuthRepositoryInteractor
+import com.nsi_projekat.repository.interactors.AuthInteractor
 import com.nsi_projekat.repository.interactors.InvestmentsInteractor
 import com.nsi_projekat.repository.interactors.StockInteractor
-import com.nsi_projekat.repository.interactors.UsersDataRepositoryInteractor
+import com.nsi_projekat.repository.interactors.UsersDataInteractor
 import com.nsi_projekat.storage.daos.StockDAO
 import dagger.Module
 import dagger.Provides
@@ -25,13 +25,13 @@ open class RepoModule {
 
     @Provides
     @Singleton
-    fun provideAuthRepository(): AuthRepositoryInteractor {
+    fun provideAuthRepository(): AuthInteractor {
         return AuthRepository()
     }
 
     @Provides
     @Singleton
-    fun provideUserDataRepository(): UsersDataRepositoryInteractor {
+    fun provideUserDataRepository(): UsersDataInteractor {
         return UsersDataRepository()
     }
 

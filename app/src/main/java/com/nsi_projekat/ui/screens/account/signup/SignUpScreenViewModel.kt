@@ -3,8 +3,8 @@ package com.nsi_projekat.ui.screens.account.signup
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.nsi_projekat.repository.interactors.AuthRepositoryInteractor
-import com.nsi_projekat.repository.interactors.UsersDataRepositoryInteractor
+import com.nsi_projekat.repository.interactors.AuthInteractor
+import com.nsi_projekat.repository.interactors.UsersDataInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
@@ -12,8 +12,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignUpScreenViewModel @Inject constructor(
-    private val authRepository: AuthRepositoryInteractor,
-    private val usersDataRepository: UsersDataRepositoryInteractor
+    private val authRepository: AuthInteractor,
+    private val usersDataRepository: UsersDataInteractor
 ): ViewModel() {
 
     val events = MutableSharedFlow<Events?>(replay = 0)

@@ -20,7 +20,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
@@ -140,9 +142,18 @@ private fun AnimatedNavigation(
         }
 
         composable(
-            route = Routes.COMPANY_INFO_SCREEN
+            route = Routes.COMPANY_INFO_SCREEN  + "/{companySymbol}",
+            arguments = listOf(
+                navArgument("companySymbol") {
+                    type = NavType.StringType
+                    defaultValue = ""
+                }
+            )
         ) {
-            CompanyInfoScreen(navController)
+            CompanyInfoScreen(
+                navController,
+                it.arguments?.getString("companySymbol") ?: ""
+            )
         }
     }
 }

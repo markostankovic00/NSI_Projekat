@@ -5,8 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nsi_projekat.models.UserData
-import com.nsi_projekat.repository.interactors.AuthRepositoryInteractor
-import com.nsi_projekat.repository.interactors.UsersDataRepositoryInteractor
+import com.nsi_projekat.repository.interactors.AuthInteractor
+import com.nsi_projekat.repository.interactors.UsersDataInteractor
 import com.nsi_projekat.ui.uiutil.composables.contextmenu.ContextMenuItem
 import com.nsi_projekat.ui.uiutil.composables.contextmenu.ContextMenuItemFunctionEnum
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,8 +19,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProfileScreenViewModel @Inject constructor(
-    private val authRepository: AuthRepositoryInteractor,
-    private val userDataRepository: UsersDataRepositoryInteractor
+    private val authRepository: AuthInteractor,
+    private val userDataRepository: UsersDataInteractor
 ): ViewModel() {
 
     val events = MutableSharedFlow<Events?>(replay = 0)

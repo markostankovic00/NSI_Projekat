@@ -30,6 +30,12 @@
     //HOME SCREEN
     <string name="home_screen_search_bar_placeholder">Search Stocks</string>
 
+    //COMPANY INFO SCREEN
+    <string name="company_info_screen_invest_button">INVEST</string>
+    <string name="company_info_screen_successful_investment_toast">Successfully invested!</string>
+    <string name="company_info_screen_label_industry">Industry:\u0020</string>
+    <string name="company_info_screen_label_country">Country:\u0020</string>
+
     //PROFILE SCREEN
     <string name="profile_screen_title">Profile</string>
     <string name="profile_screen_log_out_button">Log Out</string>
@@ -47,7 +53,20 @@
     <string name="cash_context_menu_deposit">Deposit</string>
     <string name="cash_context_menu_withdraw">Withdraw</string>
 
+    //ALERT DIALOGS
+    <string name="alert_dialog_deposit_cash_dialog_title">Deposit Cash</string>
+    <string name="alert_dialog_withdraw_cash_dialog_title">Withdraw Cash</string>
+    <string name="alert_dialog_cash_amount_dialog_text">Please enter the amount of cash</string>
+    <string name="alert_dialog_no_cash_dialog_title">Not enough resources</string>
+    <string name="alert_dialog_no_cash_dialog_text">It seems you don\'t have enough money for this investment. Please make a deposit before trying again!</string>
+    <string name="alert_dialog_invest_dialog_title">Invest in stock</string>
+    <string name="alert_dialog_invest_dialog_text">Please enter the amount of money to invest</string>
+    <string name="alert_dialog_confirm">Confirm</string>
+    <string name="alert_dialog_cancel">Cancel</string>
+    <string name="alert_dialog_currency_label">USD</string>
+
     //ERRORS AND TOASTS
+    <string name="error_retry">Retry</string>
     <string name="error_cant_be_empty">Can\'t be empty</string>
     <string name="error_password_must_have_6_chars">Password must be at least 6 characters</string>
     <string name="error_invalid_email">A valid email is required</string>

@@ -3,12 +3,12 @@ package com.nsi_projekat.repository.implementations
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.nsi_projekat.repository.interactors.AuthRepositoryInteractor
+import com.nsi_projekat.repository.interactors.AuthInteractor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
-class AuthRepository: AuthRepositoryInteractor {
+class AuthRepository: AuthInteractor {
 
     override val currentUser: FirebaseUser?
         get() = Firebase.auth.currentUser

@@ -10,9 +10,9 @@ import com.google.firebase.storage.ktx.storage
 import com.nsi_projekat.models.UserData
 import com.nsi_projekat.repository.constants.USERS_DATA_COLLECTION_REF
 import com.nsi_projekat.repository.constants.USER_IMAGES_STORAGE_REF
-import com.nsi_projekat.repository.interactors.UsersDataRepositoryInteractor
+import com.nsi_projekat.repository.interactors.UsersDataInteractor
 
-class UsersDataRepository: UsersDataRepositoryInteractor {
+class UsersDataRepository: UsersDataInteractor {
 
     private val usersDataRef: CollectionReference =
         Firebase.firestore.collection(USERS_DATA_COLLECTION_REF)
