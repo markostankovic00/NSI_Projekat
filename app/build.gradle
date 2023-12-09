@@ -29,8 +29,8 @@ android {
 
     buildTypes {
 
-        def APP_NAME_RELEASE = 'NSI_Projekat'
-        def APP_NAME_DEV = 'NSI_Projekat'
+        def APP_NAME_RELEASE = 'BullOnly'
+        def APP_NAME_DEV = 'BullOnly'
 
         debug {
             applicationIdSuffix ".dev"

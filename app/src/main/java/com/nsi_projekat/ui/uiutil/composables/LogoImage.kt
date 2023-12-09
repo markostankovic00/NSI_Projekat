@@ -43,7 +43,7 @@ fun LogoImage(
             )
             .clip(RoundedCornerShape(20.dp)),
         contentScale = ContentScale.FillBounds,
-        painter = painterResource(id = R.drawable.ic_launcher_foreground),
+        painter = painterResource(id = R.drawable.black_bull),
         contentDescription = "Splash screen logo"
     )
 }
