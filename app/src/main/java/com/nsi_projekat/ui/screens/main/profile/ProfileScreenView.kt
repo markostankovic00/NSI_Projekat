@@ -13,18 +13,15 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.AlertDialog
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.CreditCard
@@ -46,9 +43,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -59,7 +53,7 @@ import com.nsi_projekat.ui.theme.spacing
 import com.nsi_projekat.ui.uiutil.composables.AutoResizedText
 import com.nsi_projekat.ui.uiutil.composables.BoxWithBackgroundPattern
 import com.nsi_projekat.ui.uiutil.composables.PrimaryButton
-import com.nsi_projekat.ui.uiutil.composables.PrimaryOutlinedTextField
+import com.nsi_projekat.ui.uiutil.composables.alertdialogs.CashDialog
 import com.nsi_projekat.ui.uiutil.composables.contextmenu.ContextDropdownMenu
 import com.nsi_projekat.ui.uiutil.composables.contextmenu.ContextMenuItem
 import com.nsi_projekat.ui.uiutil.composables.contextmenu.ContextMenuItemFunctionEnum
@@ -216,130 +210,51 @@ private fun ProfileScreenView(
 
         if (isWithdrawCashDialogVisible) {
 
-            AlertDialog(
-                onDismissRequest = { viewModel.onWithdrawDialogDismissed() },
-                title = {
-                    Text(stringResource(id = R.string.alert_dialog_withdraw_cash_dialog_title))
+            CashDialog(
+                title = stringResource(id = R.string.alert_dialog_withdraw_cash_dialog_title),
+                amountOfCash = amountOfCash,
+                onDismissRequest = {
+                    viewModel.onWithdrawDialogDismissed()
+                    amountOfCash = ""
                 },
-                text = {
-                    Text(stringResource(id = R.string.alert_dialog_cash_amount_dialog_text))
+                onValueChange = {
+                    amountOfCash = it
                 },
-                buttons = {
-                    Column(
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-
-                        PrimaryOutlinedTextField(
-                            modifier = Modifier.padding(horizontal = MaterialTheme.spacing.medium),
-                            textStateValue = amountOfCash,
-                            onValueChange = { amountOfCash = it },
-                            label = stringResource(id = R.string.alert_dialog_currency_label),
-                            keyboardType = KeyboardType.Number
-                        )
-
-                        Row(
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-
-                            Text(
-                                modifier = Modifier
-                                    .weight(1f)
-                                    .clickable {
-                                        viewModel.onWithdrawDialogDismissed()
-                                        amountOfCash = ""
-                                    }
-                                    .padding(vertical = MaterialTheme.spacing.medium),
-                                text = stringResource(id = R.string.alert_dialog_cancel),
-                                fontWeight = FontWeight.Bold,
-                                textAlign = TextAlign.Center,
-                            )
-
-                            Text(
-                                text = stringResource(id = R.string.alert_dialog_confirm),
-                                fontWeight = FontWeight.Bold,
-                                textAlign = TextAlign.Center,
-                                color = MaterialTheme.colors.primary,
-                                modifier = Modifier
-                                    .weight(1f)
-                                    .clickable {
-                                        viewModel.withdrawCash(amountOfCash.toDoubleOrNull())
-                                        amountOfCash = ""
-                                        viewModel.onWithdrawDialogDismissed()
-                                    }
-                                    .padding(vertical = MaterialTheme.spacing.medium)
-                            )
-                        }
-
-                    }
+                onCancelClicked = {
+                    viewModel.onWithdrawDialogDismissed()
+                    amountOfCash = ""
+                },
+                onConfirmClicked = {
+                    viewModel.withdrawCash(amountOfCash.toDoubleOrNull())
+                    amountOfCash = ""
+                    viewModel.onWithdrawDialogDismissed()
                 }
             )
         }
 
         if (isDepositCashDialogVisible) {
 
-            AlertDialog(
+            CashDialog(
+                title = stringResource(id = R.string.alert_dialog_deposit_cash_dialog_title),
+                amountOfCash = amountOfCash,
                 onDismissRequest = {
                     viewModel.onDepositDialogDismissed()
                     amountOfCash = ""
                 },
-                title = {
-                    Text(stringResource(id = R.string.alert_dialog_deposit_cash_dialog_title))
+                onValueChange = {
+                    amountOfCash = it
                 },
-                text = {
-                    Text(stringResource(id = R.string.alert_dialog_cash_amount_dialog_text))
+                onCancelClicked = {
+                    viewModel.onDepositDialogDismissed()
+                    amountOfCash = ""
                 },
-                buttons = {
-
-                    Column(
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-
-                        PrimaryOutlinedTextField(
-                            modifier = Modifier.padding(horizontal = MaterialTheme.spacing.medium),
-                            textStateValue = amountOfCash,
-                            onValueChange = { amountOfCash = it },
-                            label = stringResource(id = R.string.alert_dialog_currency_label),
-                            keyboardType = KeyboardType.Number
-                        )
-
-                        Row(
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-
-                            Text(
-                                modifier = Modifier
-                                    .weight(1f)
-                                    .clickable {
-                                        viewModel.onDepositDialogDismissed()
-                                        amountOfCash = ""
-                                    }
-                                    .padding(vertical = MaterialTheme.spacing.medium),
-                                text = stringResource(id = R.string.alert_dialog_cancel),
-                                fontWeight = FontWeight.Bold,
-                                textAlign = TextAlign.Center,
-                            )
-
-                            Text(
-                                text = stringResource(id = R.string.alert_dialog_confirm),
-                                fontWeight = FontWeight.Bold,
-                                textAlign = TextAlign.Center,
-                                color = MaterialTheme.colors.primary,
-                                modifier = Modifier
-                                    .weight(1f)
-                                    .clickable {
-                                        viewModel.depositCash(amountOfCash.toDoubleOrNull())
-                                        amountOfCash = ""
-                                        viewModel.onDepositDialogDismissed()
-                                    }
-                                    .padding(vertical = MaterialTheme.spacing.medium)
-                            )
-                        }
-
-                    }
+                onConfirmClicked = {
+                    viewModel.depositCash(amountOfCash.toDoubleOrNull())
+                    amountOfCash = ""
+                    viewModel.onDepositDialogDismissed()
                 }
             )
         }
-
     }
 }
 

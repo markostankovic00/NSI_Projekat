@@ -2,16 +2,13 @@ package com.nsi_projekat.ui.screens.main.companyinfo
 
 import android.widget.Toast
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.AlertDialog
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
@@ -28,9 +25,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -40,10 +34,11 @@ import com.nsi_projekat.models.CompanyInfo
 import com.nsi_projekat.ui.theme.spacing
 import com.nsi_projekat.ui.uiutil.composables.BoxWithBackgroundPattern
 import com.nsi_projekat.ui.uiutil.composables.PrimaryButton
-import com.nsi_projekat.ui.uiutil.composables.PrimaryOutlinedTextField
 import com.nsi_projekat.ui.uiutil.composables.RetrySection
 import com.nsi_projekat.ui.uiutil.composables.StockChart
 import com.nsi_projekat.ui.screens.main.companyinfo.CompanyInfoScreenViewModel.Events
+import com.nsi_projekat.ui.uiutil.composables.alertdialogs.CashDialog
+import com.nsi_projekat.ui.uiutil.composables.alertdialogs.NotEnoughResourcesDialog
 
 @Composable
 fun CompanyInfoScreen(
@@ -124,98 +119,34 @@ private fun CompanyInfoScreenView(
 
     if (isNoCashDialogVisible) {
 
-        AlertDialog(
-            onDismissRequest = { viewModel.dismissNoCashDialog() },
-            title = {
-                Text(stringResource(id = R.string.alert_dialog_no_cash_dialog_title))
-            },
-            text = {
-                Text(stringResource(id = R.string.alert_dialog_no_cash_dialog_text))
-            },
-            buttons = {
-
-                Box(
-                    modifier = Modifier
-                        .padding(
-                            horizontal = MaterialTheme.spacing.large,
-                            vertical = MaterialTheme.spacing.medium
-                        )
-                        .fillMaxWidth(),
-                    contentAlignment = Alignment.CenterEnd
-                ) {
-
-                    Text(
-                        text = stringResource(id = R.string.alert_dialog_confirm),
-                        fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Center,
-                        color = MaterialTheme.colors.primary,
-                        modifier = Modifier
-                            .clickable {
-                                viewModel.dismissNoCashDialog()
-                            }
-                    )
-                }
-            }
+        NotEnoughResourcesDialog(
+            title = stringResource(id = R.string.alert_dialog_no_cash_dialog_title),
+            text = stringResource(id = R.string.alert_dialog_no_cash_dialog_text),
+            onDismissRequest = viewModel::dismissNoCashDialog,
+            onConfirmClick = viewModel::dismissNoCashDialog
         )
     }
 
     if (isInvestDialogVisible) {
 
-        AlertDialog(
-            onDismissRequest = { viewModel.dismissInvestDialog() },
-            title = {
-                Text(stringResource(id = R.string.alert_dialog_invest_dialog_title))
+        CashDialog(
+            title = stringResource(id = R.string.alert_dialog_invest_dialog_title),
+            amountOfCash = amountOfCash,
+            onDismissRequest = {
+                viewModel.dismissInvestDialog()
+                amountOfCash = ""
             },
-            text = {
-                Text(stringResource(id = R.string.alert_dialog_invest_dialog_text))
+            onValueChange = {
+                amountOfCash = it
             },
-            buttons = {
-                Column(
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-
-                    PrimaryOutlinedTextField(
-                        modifier = Modifier.padding(horizontal = MaterialTheme.spacing.medium),
-                        textStateValue = amountOfCash,
-                        onValueChange = { amountOfCash = it },
-                        label = stringResource(id = R.string.alert_dialog_currency_label),
-                        keyboardType = KeyboardType.Number
-                    )
-
-                    Row(
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-
-                        Text(
-                            modifier = Modifier
-                                .weight(1f)
-                                .clickable {
-                                    viewModel.dismissInvestDialog()
-                                    amountOfCash = ""
-                                }
-                                .padding(vertical = MaterialTheme.spacing.medium),
-                            text = stringResource(id = R.string.alert_dialog_cancel),
-                            fontWeight = FontWeight.Bold,
-                            textAlign = TextAlign.Center,
-                        )
-
-                        Text(
-                            text = stringResource(id = R.string.alert_dialog_confirm),
-                            fontWeight = FontWeight.Bold,
-                            textAlign = TextAlign.Center,
-                            color = MaterialTheme.colors.primary,
-                            modifier = Modifier
-                                .weight(1f)
-                                .clickable {
-                                    viewModel.onConfirmInvestDialogClick(amountOfCash.toDoubleOrNull())
-                                    amountOfCash = ""
-                                    viewModel.dismissInvestDialog()
-                                }
-                                .padding(vertical = MaterialTheme.spacing.medium)
-                        )
-                    }
-
-                }
+            onCancelClicked = {
+                viewModel.dismissInvestDialog()
+                amountOfCash = ""
+            },
+            onConfirmClicked = {
+                viewModel.onConfirmInvestDialogClick(amountOfCash.toDoubleOrNull())
+                amountOfCash = ""
+                viewModel.dismissInvestDialog()
             }
         )
     }
