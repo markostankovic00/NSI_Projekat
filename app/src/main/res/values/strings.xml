@@ -27,6 +27,9 @@
     <string name="investments_screen_title">My Investments</string>
     <string name="investments_screen_make_investment">Go and make your first investment!</string>
 
+    //HOME SCREEN
+    <string name="home_screen_search_bar_placeholder">Search Stocks</string>
+
     //PROFILE SCREEN
     <string name="profile_screen_title">Profile</string>
     <string name="profile_screen_log_out_button">Log Out</string>

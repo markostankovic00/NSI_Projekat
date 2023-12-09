@@ -27,6 +27,7 @@ import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.nsi_projekat.R
 import com.nsi_projekat.ui.activities.MainViewModel
 import com.nsi_projekat.ui.activities.MainViewModel.Events
+import com.nsi_projekat.ui.screens.main.companyinfo.CompanyInfoScreen
 import com.nsi_projekat.ui.screens.main.home.HomeScreen
 import com.nsi_projekat.ui.screens.main.investments.InvestmentsScreen
 import com.nsi_projekat.ui.screens.main.profile.ProfileScreen
@@ -136,6 +137,12 @@ private fun AnimatedNavigation(
             route = Routes.INVESTMENTS_SCREEN
         ) {
             InvestmentsScreen(navController)
+        }
+
+        composable(
+            route = Routes.COMPANY_INFO_SCREEN
+        ) {
+            CompanyInfoScreen(navController)
         }
     }
 }

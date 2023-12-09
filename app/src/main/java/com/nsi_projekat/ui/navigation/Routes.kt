@@ -12,4 +12,5 @@ object Routes {
     const val HOME_SCREEN = "home_screen"
     const val PROFILE_SCREEN = "profile_screen"
     const val INVESTMENTS_SCREEN = "investments_screen"
+    const val COMPANY_INFO_SCREEN = "company_info_screen"
 }

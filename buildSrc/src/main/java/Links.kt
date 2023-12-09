@@ -1,5 +1,5 @@
 object Links {
 
-    const val retrofitBaseUrlDev = ""
-    const val retrofitBaseUrlRelease = ""
+    const val retrofitBaseUrlDev = "alphavantage.co"
+    const val retrofitBaseUrlRelease = "alphavantage.co"
 }
